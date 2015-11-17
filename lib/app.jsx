@@ -13,5 +13,4 @@ var Box = React.createClass({
     );
   }
 });
-
 React.render(<Box/>, document.body);
