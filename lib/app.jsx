@@ -11,24 +11,18 @@ var Box = React.createClass({
   getInitialState: function() {
    return {value: this.props.initialValue};
  },
-componentWillMount: function(){
-    var old_this = this;
-    this.timer = setInterval(function(){
-      var oldValue = old_this.state.value;
-      var newValue = oldValue === 'X' ? 'O': 'X';
-      old_this.setState({
-        value: newValue
-      });
-    }, 300);
-  },
 
-componentWillUnmount: function(){
-    clearInterval(this.timer);
-  },
+ handleClick: function(){
+   var oldValue = this.state.value;
+   var newValue = oldValue === 'X' ? 'O': 'X';
+   this.setState({
+     value: newValue
+   });
+ },
 
   'render': function onRender () {
     return (
-      <button style={bottomStyle}>{this.state.value}</button>
+      <button style={bottomStyle} onClick={this.handleClick}>{this.state.value}</button>
     );
   }
 });
