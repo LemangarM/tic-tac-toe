@@ -9,10 +9,23 @@ var bottomStyle={
 
 var Box = React.createClass({
   getInitialState: function() {
-   // naming it initialX clearly indicates that the only purpose
-   // of the passed down prop is to initialize something internally
    return {value: this.props.initialValue};
  },
+componentWillMount: function(){
+    var old_this = this;
+    this.timer = setInterval(function(){
+      var oldValue = old_this.state.value;
+      var newValue = oldValue === 'X' ? 'O': 'X';
+      old_this.setState({
+        value: newValue
+      });
+    }, 300);
+  },
+
+componentWillUnmount: function(){
+    clearInterval(this.timer);
+  },
+
   'render': function onRender () {
     return (
       <button style={bottomStyle}>{this.state.value}</button>
