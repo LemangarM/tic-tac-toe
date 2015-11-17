@@ -8,14 +8,15 @@ var bottomStyle={
 };
 
 var Box = React.createClass({
-  /**
-   * Render a HTML button
-   * @return {ReactElement}
-   */
+  getInitialState: function() {
+   // naming it initialX clearly indicates that the only purpose
+   // of the passed down prop is to initialize something internally
+   return {value: this.props.initialValue};
+ },
   'render': function onRender () {
     return (
-      <button style={bottomStyle}>{this.props.value}</button>
+      <button style={bottomStyle}>{this.state.value}</button>
     );
   }
 });
-React.render(<Box value='Y'/>, document.body);
+React.render(<Box initialValue='X'/>, document.body);
